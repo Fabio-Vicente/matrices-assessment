@@ -14,9 +14,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased">
-        <Header />
-        {children}
+      <body className="antialiased pl-17 bg-[#e9eef6]">
+        <div className="bg-[#f8fafd]">
+          <Header />
+          {children}
+        </div>
       </body>
     </html>
   );
