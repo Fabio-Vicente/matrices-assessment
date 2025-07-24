@@ -13,7 +13,9 @@ import SpamButton from "./SpamButton";
 
 export default function Header() {
   const dispatch = useAppDispatch();
-  const messageId = useAppSelector(selectViewingMessageId);
+  const messageId = useAppSelector((state) =>
+    selectViewingMessageId(state.messages),
+  );
   const { currentPage } = useNavigation();
 
   const handleBack = useCallback(() => {
