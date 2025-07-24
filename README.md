@@ -43,6 +43,16 @@ This project was developed as part of a job position assessment, with a strong f
 - **Exact Behavior:** The application was built to behave exactly as the provided model, including all its specific UI and UX nuances. This includes edge cases and behaviors that might not be typical in a production app, but were required for assessment fidelity.
 - **No Unnecessary Abstractions:** Even when alternative or more generic solutions were possible, the implementation prioritizes matching the model's requirements and user experience.
 
+## Customizing App Simulation Parameters
+
+You can easily simulate different scenarios by modifying parameters in the `src/common/mock` directory:
+
+- **Current Date:** Change the current date used by the app in `src/common/mock/time.ts`.
+- **User:** Change the local user (the email account in use) in `src/common/mock/user.ts`.
+- **Email List:** Modify the list of emails/messages in `src/common/mock/messages.ts`.
+
+This flexibility allows you to test and demonstrate the app's behavior under various conditions and user profiles.
+
 ---
 
 **Note:** This project demonstrates not only technical proficiency with React, Redux, and modern frontend tooling, but also the ability to follow detailed requirements and leverage AI tools for rapid, high-quality delivery.
