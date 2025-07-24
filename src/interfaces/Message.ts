@@ -1,12 +1,14 @@
-import { Sender } from "./Sender";
+import { User } from "./User";
 
 export default interface Message {
   id: string;
   subject: string;
-  sender: Sender;
+  sender: User;
+  recipients: User[];
   date: Date;
   isRead: boolean;
   isStarred: boolean;
   folder: "inbox" | "spam" | "trash";
   content: string;
+  threadId?: string;
 }
