@@ -9,7 +9,7 @@ export default function RestoreButton({
 }: PropsWithChildren<React.ButtonHTMLAttributes<HTMLButtonElement>>) {
   return (
     <HeaderBaseButton
-      className={classNames("px-3 py-1.5 rounded", className)}
+      className={classNames("rounded px-3 py-1.5", className)}
       {...props}
     >
       {children}

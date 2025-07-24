@@ -7,12 +7,12 @@ import { classNames } from "@/utils/classes";
 
 export default function Home() {
   const messageViewingId = useAppSelector((state) =>
-    selectViewingMessageId(state.messages)
+    selectViewingMessageId(state.messages),
   );
 
   return (
     <div
-      className={classNames("bg-white rounded-2xl h-full", {
+      className={classNames("h-full rounded-2xl bg-white", {
         "pt-12": !messageViewingId,
       })}
     >

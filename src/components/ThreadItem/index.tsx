@@ -26,9 +26,9 @@ export default function ThreadItem({
     () =>
       Math.round(
         (currentTime.getTime() - new Date(message.date).getTime()) /
-          ONE_HOUR_IN_MS
+          ONE_HOUR_IN_MS,
       ),
-    [message.date]
+    [message.date],
   );
   const daysAgo = useMemo(() => Math.round(hoursAgo / 24), [hoursAgo]);
 
@@ -41,17 +41,17 @@ export default function ThreadItem({
 
   return (
     <div
-      className={classNames("py-5 flex gap-1 flex-col px-4", {
+      className={classNames("flex flex-col gap-1 px-4 py-5", {
         "border-b border-[#e5e5e5]": divider,
       })}
     >
       <div role="button" onClick={handleToggle}>
-        <header className="gap-3 flex">
+        <header className="flex gap-3">
           <Avatar user={message.sender} />
-          <div className="flex flex-col flex-1">
-            <div className="gap-2 flex items-start">
-              <div className="flex flex-col flex-1">
-                <div className="flex gap-2 items-baseline">
+          <div className="flex flex-1 flex-col">
+            <div className="flex items-start gap-2">
+              <div className="flex flex-1 flex-col">
+                <div className="flex items-baseline gap-2">
                   <h3 className="text-sm font-semibold">
                     {message.sender.name}
                   </h3>
@@ -62,13 +62,13 @@ export default function ThreadItem({
                   )}
                 </div>
                 {isOpened && (
-                  <span className="text-xs text-gray-600 text-start">
+                  <span className="text-start text-xs text-gray-600">
                     to{" "}
                     {message.recipients
                       .map((recipient) =>
                         recipient.email === localUserEmail
                           ? "you"
-                          : recipient.name
+                          : recipient.name,
                       )
                       .join(", ")}
                   </span>
@@ -102,7 +102,7 @@ export default function ThreadItem({
         </header>
       </div>
       {isOpened && (
-        <p className="text-[13px] ml-13  whitespace-pre-wrap">
+        <p className="ml-13 text-[13px] whitespace-pre-wrap">
           {message.content}
         </p>
       )}

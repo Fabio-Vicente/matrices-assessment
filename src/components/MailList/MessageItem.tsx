@@ -21,13 +21,13 @@ interface PropTypes {
 export default memo(function Message({ id }: PropTypes) {
   const dispatch = useAppDispatch();
   const message = useAppSelector((state) =>
-    selectMessageById(state.messages, id)
+    selectMessageById(state.messages, id),
   );
   const threadMessages = useAppSelector((state) =>
-    selectMessagesByThreadId(state.messages, message.threadId)
+    selectMessagesByThreadId(state.messages, message.threadId),
   );
   const isThreadStarred = useAppSelector((state) =>
-    selectIsThreadStarred(state.messages, message.threadId)
+    selectIsThreadStarred(state.messages, message.threadId),
   );
   const { currentPage } = useNavigation();
 
@@ -38,20 +38,20 @@ export default memo(function Message({ id }: PropTypes) {
           message.sender.email === localUserEmail
             ? [...threadUsers, ...message.recipients]
             : [...threadUsers, message.sender],
-        []
+        [],
       ) // include all users in the thread
       .filter((user, index, self) =>
         self
           .slice(index + 1)
-          .every((slicedUser) => slicedUser.email !== user.email)
+          .every((slicedUser) => slicedUser.email !== user.email),
       ) // remove duplicates
       .map((user) => user.name) // get names
       .concat(
         ((threadMessages ?? [message]).some(
-          (message) => message.sender.email === localUserEmail
+          (message) => message.sender.email === localUserEmail,
         ) &&
           "you") ||
-          []
+          [],
       ); // include yourself if you are in the thread
   }, [threadMessages, message.sender.name]);
 
@@ -62,7 +62,7 @@ export default memo(function Message({ id }: PropTypes) {
       }
       dispatch(messageViewingStarted(message.id));
     },
-    [dispatch, message.id]
+    [dispatch, message.id],
   );
 
   if (!message) return null;
@@ -99,10 +99,10 @@ export default memo(function Message({ id }: PropTypes) {
     <div
       role="button"
       className={classNames(
-        "px-4 border-gray-200 h-10 flex gap-3 items-center text-sm border-b hover:shadow-md",
+        "flex h-10 items-center gap-3 border-b border-gray-200 px-4 text-sm hover:shadow-md",
         {
           "bg-gray-50": message.isRead,
-        }
+        },
       )}
       onClick={handleClick}
     >
@@ -113,21 +113,21 @@ export default memo(function Message({ id }: PropTypes) {
             : { messageId: message.id })}
         />
       )}
-      <div className={classNames("max-w-[200px] truncate flex-1")}>
+      <div className={classNames("max-w-[200px] flex-1 truncate")}>
         <span className={classNames({ "font-bold": !message.isRead })}>
           {`${threadUsers.join(", ")}`}
         </span>
-        <span className="text-xs text-gray-500 ml-1">
+        <span className="ml-1 text-xs text-gray-500">
           {threadMessages && threadUsers.length > 1
             ? `(${threadUsers.length})`
             : ""}
         </span>
       </div>
-      <div className="flex truncate flex-1">
+      <div className="flex flex-1 truncate">
         <span className={classNames({ "font-semibold": !message.isRead })}>
           {message.subject}
         </span>
-        <span className="text-gray-500 truncate flex-1">
+        <span className="flex-1 truncate text-gray-500">
           ​ -​ {message.content}
         </span>
       </div>

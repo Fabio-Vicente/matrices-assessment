@@ -21,7 +21,7 @@ export default function NavItem({ page }: PropTypes) {
   const messagesCounter = useAppSelector((state) =>
     page === "inbox" || page === "spam"
       ? selectCounterByFolder(state.messages, page)
-      : 0
+      : 0,
   );
   const { currentPage, navigateTo } = useNavigation();
 
@@ -34,16 +34,16 @@ export default function NavItem({ page }: PropTypes) {
     <button
       onClick={handleNavigation}
       className={classNames(
-        "py-1.5 pr-3 pl-4 rounded-full flex gap-4 w-full items-center",
+        "flex w-full items-center gap-4 rounded-full py-1.5 pr-3 pl-4",
         {
           "bg-[#d3e3fd]": currentPage === page,
           "hover:bg-[#e5e7eb]": currentPage !== page,
-        }
+        },
       )}
     >
       <Image src={navPages[page].iconPath} alt={page} width={20} height={20} />
       <span
-        className={classNames("text-sm flex-1 text-left", {
+        className={classNames("flex-1 text-left text-sm", {
           "font-semibold": currentPage === page,
         })}
       >

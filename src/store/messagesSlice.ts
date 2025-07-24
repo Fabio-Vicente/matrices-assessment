@@ -23,7 +23,7 @@ const initialState = messagesAdapter.getInitialState<AdditionalState>(
   {
     viewingMessageId: null,
   },
-  messages
+  messages,
 );
 
 const messagesSlice = createSlice({
@@ -35,7 +35,7 @@ const messagesSlice = createSlice({
       state,
       {
         payload: { messageId, newFolder },
-      }: PayloadAction<{ messageId: string; newFolder: Message["folder"] }>
+      }: PayloadAction<{ messageId: string; newFolder: Message["folder"] }>,
     ) => {
       messagesAdapter.updateOne(state, {
         id: messageId,
@@ -47,7 +47,7 @@ const messagesSlice = createSlice({
     },
     messagesReadToggled: (
       state,
-      { payload: messageId }: PayloadAction<string>
+      { payload: messageId }: PayloadAction<string>,
     ) => {
       const message = state.entities[messageId];
       if (message) {
@@ -56,7 +56,7 @@ const messagesSlice = createSlice({
     },
     messagesStarToggled: (
       state,
-      { payload: messageId }: PayloadAction<string>
+      { payload: messageId }: PayloadAction<string>,
     ) => {
       const message = state.entities[messageId];
       if (message) {
@@ -65,10 +65,10 @@ const messagesSlice = createSlice({
     },
     threadStarToggled: (
       state,
-      { payload: threadId }: PayloadAction<string>
+      { payload: threadId }: PayloadAction<string>,
     ) => {
       const threadMessages = Object.values(state.entities).filter(
-        (message) => message.threadId === threadId
+        (message) => message.threadId === threadId,
       );
       const isStarred = threadMessages.some((message) => message.isStarred);
 
@@ -82,7 +82,7 @@ const messagesSlice = createSlice({
     },
     messageViewingStarted: (
       state,
-      { payload: messageId }: PayloadAction<string>
+      { payload: messageId }: PayloadAction<string>,
     ) => {
       state.viewingMessageId = messageId;
     },
@@ -110,33 +110,33 @@ export const {
 
 export const selectMessagesByThreadId = (
   state: MessagesState,
-  threadId: Message["threadId"]
+  threadId: Message["threadId"],
 ) => {
   if (!threadId) {
     return null;
   }
   return selectAllMessages(state).filter(
-    (message) => message.threadId === threadId
+    (message) => message.threadId === threadId,
   );
 };
 
 export const selectCounterByFolder = (
   state: MessagesState,
-  folder: Message["folder"]
+  folder: Message["folder"],
 ) => {
   return selectAllMessages(state).filter(
     (message) =>
       message.folder === folder &&
-      (!message.threadId || message.isLastMessageInThread)
+      (!message.threadId || message.isLastMessageInThread),
   ).length;
 };
 
 export const selectIsThreadStarred = (
   state: MessagesState,
-  threadId: Message["threadId"]
+  threadId: Message["threadId"],
 ) => {
   return selectMessagesByThreadId(state, threadId)?.some(
-    (message) => message.isStarred
+    (message) => message.isStarred,
   );
 };
 

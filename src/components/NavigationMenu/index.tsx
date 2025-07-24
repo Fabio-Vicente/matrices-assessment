@@ -6,7 +6,7 @@ import { NavKey } from "@/common/types";
 
 export default function Nav() {
   return (
-    <div className="px-3 max-w-[256px] gap-4 flex flex-col flex-1">
+    <div className="flex max-w-[256px] flex-1 flex-col gap-4 px-3">
       <Placeholder />
       <div>
         {Object.keys(navPages).map((page) => (

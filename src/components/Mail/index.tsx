@@ -13,17 +13,17 @@ interface PropTypes {
 
 export default function Mail({ viewingMailId }: PropTypes) {
   const viewingMail = useAppSelector((state) =>
-    selectMessageById(state.messages, viewingMailId)
+    selectMessageById(state.messages, viewingMailId),
   );
   const threads = useAppSelector((state) =>
-    selectMessagesByThreadId(state.messages, viewingMail.threadId)
+    selectMessagesByThreadId(state.messages, viewingMail.threadId),
   );
 
   return (
     <div className="pt-2">
       <Header />
       <div className="pt-6">
-        <h2 className="ml-[52px] text-[22px] px-4">{viewingMail.subject}</h2>
+        <h2 className="ml-[52px] px-4 text-[22px]">{viewingMail.subject}</h2>
         {threads
           ?.reverse()
           .map((thread, index, { length }) => (

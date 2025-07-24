@@ -13,7 +13,7 @@ import EmptyState from "./EmptyState";
 
 export default memo(function MailList() {
   const messagesIds = useAppSelector((state) =>
-    selectMessageIds(state.messages)
+    selectMessageIds(state.messages),
   );
   const { currentPage } = useNavigation();
   const messagesCounter = useAppSelector((state) => {
