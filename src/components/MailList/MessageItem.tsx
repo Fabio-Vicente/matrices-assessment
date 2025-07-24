@@ -88,7 +88,7 @@ export default memo(function Message({ id }: PropTypes) {
       )}
       onClick={handleClick}
     >
-      <StarButton messageId={message.id} />
+      {message.folder !== "trash" && <StarButton messageId={message.id} />}
       <div className={classNames("max-w-[200px] truncate flex-1")}>
         <span className={classNames({ "font-bold": !message.isRead })}>
           {Array.isArray(sender) ? `${sender.join(", ")}` : sender}

@@ -88,7 +88,9 @@ export default function ThreadItem({
                     ? `(${daysAgo} days ago)`
                     : `(${hoursAgo} hours ago)`}
                 </span>
-                <StarButton messageId={message.id} className="-m-1" />
+                {message.folder !== "trash" && (
+                  <StarButton messageId={message.id} className="-m-1" />
+                )}
               </div>
             </div>
             {!isOpened && (
