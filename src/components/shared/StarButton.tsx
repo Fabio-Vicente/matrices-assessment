@@ -30,8 +30,8 @@ export default memo(function StarButton({ className, ...props }: PropTypes) {
     messageId
       ? selectMessageById(state.messages, messageId).isStarred
       : selectMessagesByThreadId(state.messages, threadId)?.some(
-          (message) => message.isStarred
-        )
+          (message) => message.isStarred,
+        ),
   );
 
   const handleToggleStarred = useCallback(
@@ -43,7 +43,7 @@ export default memo(function StarButton({ className, ...props }: PropTypes) {
         dispatch(threadStarToggled(threadId!));
       }
     },
-    [isStarred, dispatch, messageId, threadId]
+    [isStarred, dispatch, messageId, threadId],
   );
 
   return (
