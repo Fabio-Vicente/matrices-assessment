@@ -36,8 +36,8 @@ export default function NavItem({ page }: PropTypes) {
       className={classNames(
         "flex w-full items-center gap-4 rounded-full py-1.5 pr-3 pl-4",
         {
-          "bg-[#d3e3fd]": currentPage === page,
-          "hover:bg-[#e5e7eb]": currentPage !== page,
+          "bg-Theme-Selected": currentPage === page,
+          "hover:bg-Theme-Hover": currentPage !== page,
         },
       )}
     >

@@ -46,7 +46,7 @@ export default function ThreadItem({
   return (
     <div
       className={classNames("flex flex-col gap-1 px-4 py-5", {
-        "border-b border-[#e5e5e5]": divider,
+        "border-b border-Theme-Border": divider,
       })}
     >
       <div role="button" onClick={handleToggle}>
@@ -60,13 +60,13 @@ export default function ThreadItem({
                     {message.sender.name}
                   </h3>
                   {isOpened && (
-                    <span className="text-xs text-gray-500">
+                    <span className="text-xs text-Theme-Gray-500">
                       {`<${message.sender.email}>`}
                     </span>
                   )}
                 </div>
                 {isOpened && (
-                  <span className="text-start text-xs text-gray-600">
+                  <span className="text-start text-xs text-Theme-Gray-600">
                     to{" "}
                     {message.recipients
                       .map((recipient) =>
@@ -79,7 +79,7 @@ export default function ThreadItem({
                 )}
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-xs text-gray-500">
+                <span className="text-xs text-Theme-Gray-500">
                   {new Date(message.date).toLocaleString("en-US", {
                     weekday: "short",
                     month: "short",
@@ -98,7 +98,7 @@ export default function ThreadItem({
               </div>
             </div>
             {!isOpened && (
-              <p className="text-[13px] whitespace-pre-wrap text-gray-600">
+              <p className="text-[13px] whitespace-pre-wrap text-Theme-Gray-600">
                 {message.content}
               </p>
             )}

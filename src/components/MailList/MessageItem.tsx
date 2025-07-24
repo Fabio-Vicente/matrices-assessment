@@ -99,9 +99,9 @@ export default memo(function Message({ id }: PropTypes) {
     <div
       role="button"
       className={classNames(
-        "flex h-10 items-center gap-3 border-b border-gray-200 px-4 text-sm hover:shadow-md",
+        "flex h-10 items-center gap-3 border-b border-Theme-Gray-200 px-4 text-sm hover:shadow-md",
         {
-          "bg-gray-50": message.isRead,
+          "bg-Theme-Gray-50": message.isRead,
         },
       )}
       onClick={handleClick}
@@ -117,7 +117,7 @@ export default memo(function Message({ id }: PropTypes) {
         <span className={classNames({ "font-bold": !message.isRead })}>
           {`${threadUsers.join(", ")}`}
         </span>
-        <span className="ml-1 text-xs text-gray-500">
+        <span className="ml-1 text-xs text-Theme-Gray-500">
           {threadMessages && threadUsers.length > 1
             ? `(${threadUsers.length})`
             : ""}
@@ -127,11 +127,11 @@ export default memo(function Message({ id }: PropTypes) {
         <span className={classNames({ "font-semibold": !message.isRead })}>
           {message.subject}
         </span>
-        <span className="flex-1 truncate text-gray-500">
+        <span className="flex-1 truncate text-Theme-Gray-500">
           ​ -​ {message.content}
         </span>
       </div>
-      <span className="text-xs text-gray-500">
+      <span className="text-xs text-Theme-Gray-500">
         {moment(message.date).calendar(currentTime, {
           sameDay: "h:mm A",
           lastDay: "MMM D",

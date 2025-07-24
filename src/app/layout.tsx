@@ -17,8 +17,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="h-screen bg-[#e9eef6] pl-17 antialiased">
-        <div className="flex h-full flex-col bg-[#f8fafd]">
+      <body className="h-screen bg-Theme-Main pl-17 antialiased">
+        <div className="flex h-full flex-col bg-Theme-Surface">
           <Header />
           <div className="flex min-h-0 flex-1">
             <ReduxProvider>

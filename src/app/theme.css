@@ -1,0 +1,28 @@
+:root {
+  color-scheme: light;
+}
+
+@theme {
+  /* Fonts */
+  --font-ibm-plex-mono: var(--font-ibm-plex-mono);
+  --font-ibm-plex-sans: var(--font-ibm-plex-sans);
+
+  /* Colors */
+  --color-Theme-Main: #e9eef6;
+  --color-Theme-Surface: #f8fafd;
+  --color-Theme-Border: #e5e5e5;
+  --color-Theme-Selected: #d3e3fd;
+  --color-Theme-Hover: #e5e7eb;
+  --color-Theme-Placeholder: #c2e7ff;
+  --color-Theme-Gray-50: #f9fafb; /* Tailwind gray-50 */
+  --color-Theme-Gray-200: #e5e7eb; /* Tailwind gray-200 */
+  --color-Theme-Gray-500: #6b7280; /* Tailwind gray-500 */
+  --color-Theme-Gray-600: #4b5563; /* Tailwind gray-600 */
+  --color-Theme-White: #ffffff;
+
+  /* Gradients */
+  --gradient-STAL: 128deg, #fffeed -4.69%, #add752 41.84%, #0cb1e4 108.01%;
+
+  /* Radius */
+  --radius-cornerRadius-large: 16px;
+}

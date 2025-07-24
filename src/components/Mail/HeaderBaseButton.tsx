@@ -9,7 +9,7 @@ export default function HeaderBaseButton({
   return (
     <button
       className={classNames(
-        "rounded-full p-2 text-sm hover:bg-gray-100",
+        "rounded-full p-2 text-sm hover:bg-Theme-Gray-50",
         className,
       )}
       {...props}
