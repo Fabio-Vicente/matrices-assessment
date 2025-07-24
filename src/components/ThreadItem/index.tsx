@@ -3,13 +3,14 @@
 import { currentTime } from "@/common/mock/time";
 import { localUserEmail } from "@/common/mock/user";
 import { StarButton } from "@/components/shared";
-import { Message } from "@/interfaces";
+import { useAppSelector } from "@/store/hooks";
+import { selectMessageById } from "@/store/messagesSlice";
 import { classNames } from "@/utils/classes";
 import React, { useCallback, useMemo, useState } from "react";
 import Avatar from "./Avatar";
 
 interface PropTypes {
-  message: Message;
+  messageId: string;
   divider?: boolean;
   defaultOpened?: boolean;
 }
@@ -17,10 +18,13 @@ interface PropTypes {
 const ONE_HOUR_IN_MS = 1000 * 60 * 60;
 
 export default function ThreadItem({
-  message,
+  messageId,
   divider,
   defaultOpened = true,
 }: PropTypes) {
+  const message = useAppSelector((state) =>
+    selectMessageById(state.messages, messageId),
+  );
   const [isOpened, setIsOpened] = useState(defaultOpened);
   const hoursAgo = useMemo(
     () =>

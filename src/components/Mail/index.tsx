@@ -28,11 +28,11 @@ export default function Mail({ viewingMailId }: PropTypes) {
           .map((thread, index, { length }) => (
             <ThreadItem
               key={thread.id}
-              message={thread}
+              messageId={thread.id}
               divider={index !== length - 1}
               defaultOpened={index === length - 1}
             />
-          )) ?? <ThreadItem message={viewingMail} />}
+          )) ?? <ThreadItem messageId={viewingMailId} />}
       </div>
     </div>
   );
