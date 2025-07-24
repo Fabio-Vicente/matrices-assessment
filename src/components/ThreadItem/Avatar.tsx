@@ -1,5 +1,5 @@
-import { getInitialsUppercase } from "@/utils/string";
 import { User } from "@/interfaces";
+import { getInitialsUppercase } from "@/utils/string";
 
 interface PropTypes {
   user: User;

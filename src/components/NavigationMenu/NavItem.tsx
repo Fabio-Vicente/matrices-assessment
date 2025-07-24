@@ -1,16 +1,16 @@
 "use client";
 
-import React, { useCallback } from "react";
-import Image from "next/image";
-import { useNavigation } from "@/providers/NavigationProvider";
-import { NavKey } from "@/common/types";
 import { navPages } from "@/common/params";
-import { classNames } from "@/utils/classes";
+import { NavKey } from "@/common/types";
+import { useNavigation } from "@/providers/NavigationProvider";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
   messageViewingEnded,
   selectCounterByFolder,
 } from "@/store/messagesSlice";
+import { classNames } from "@/utils/classes";
+import Image from "next/image";
+import { useCallback } from "react";
 
 interface PropTypes {
   page: NavKey;

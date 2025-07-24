@@ -1,13 +1,11 @@
-import React, { PropsWithChildren } from "react";
 import { classNames } from "@/utils/classes";
-
-interface PropTypes extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+import React, { PropsWithChildren } from "react";
 
 export default function HeaderBaseButton({
   className,
   children,
   ...props
-}: PropsWithChildren<PropTypes>) {
+}: PropsWithChildren<React.ButtonHTMLAttributes<HTMLButtonElement>>) {
   return (
     <button
       className={classNames(

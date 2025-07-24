@@ -1,15 +1,15 @@
-import React, { useCallback } from "react";
+import { useNavigation } from "@/hooks";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
   messagesFolderMoved,
   messageViewingEnded,
   selectViewingMessageId,
 } from "@/store/messagesSlice";
-import { useNavigation } from "@/hooks";
+import { useCallback } from "react";
 import BackButton from "./BackButton";
-import SpamButton from "./SpamButton";
 import DeleteButton from "./DeleteButton";
 import RestoreButton from "./RestoreButton";
+import SpamButton from "./SpamButton";
 
 export default function Header() {
   const dispatch = useAppDispatch();

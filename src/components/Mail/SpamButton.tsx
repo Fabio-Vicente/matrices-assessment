@@ -1,5 +1,5 @@
-import React from "react";
 import Image from "next/image";
+import React from "react";
 import HeaderBaseButton from "./HeaderBaseButton";
 
 interface PropTypes extends React.ButtonHTMLAttributes<HTMLButtonElement> {}

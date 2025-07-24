@@ -1,8 +1,8 @@
 "use client";
 
-import { selectViewingMessageId } from "@/store/messagesSlice";
-import { useAppSelector } from "@/store/hooks";
 import { Mail, MailList } from "@/components";
+import { useAppSelector } from "@/store/hooks";
+import { selectViewingMessageId } from "@/store/messagesSlice";
 import { classNames } from "@/utils/classes";
 
 export default function Home() {

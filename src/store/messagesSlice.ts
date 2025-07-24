@@ -1,10 +1,10 @@
+import { messages } from "@/common/mock/messages";
 import { Message } from "@/interfaces";
 import {
   createEntityAdapter,
   createSlice,
   PayloadAction,
 } from "@reduxjs/toolkit";
-import { messages } from "@/common/mock/messages";
 
 interface AdditionalState {
   viewingMessageId: string | null;

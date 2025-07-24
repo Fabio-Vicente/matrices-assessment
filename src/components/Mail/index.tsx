@@ -1,11 +1,10 @@
-import React from "react";
+import { useAppSelector } from "@/store/hooks";
 import {
   selectMessageById,
   selectMessagesByThreadId,
 } from "@/store/messagesSlice";
-import { useAppSelector } from "@/store/hooks";
-import Header from "./Header";
 import ThreadItem from "../ThreadItem";
+import Header from "./Header";
 
 interface PropTypes {
   viewingMailId: string;

@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useCallback, useMemo, useState } from "react";
-import { StarButton } from "@/components/shared";
-import Avatar from "./Avatar";
-import { localUserEmail } from "@/common/mock/user";
 import { currentTime } from "@/common/mock/time";
+import { localUserEmail } from "@/common/mock/user";
+import { StarButton } from "@/components/shared";
 import { Message } from "@/interfaces";
 import { classNames } from "@/utils/classes";
+import React, { useCallback, useMemo, useState } from "react";
+import Avatar from "./Avatar";
 
 interface PropTypes {
   message: Message;

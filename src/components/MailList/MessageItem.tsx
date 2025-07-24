@@ -1,18 +1,18 @@
-import React, { memo, useCallback, useMemo } from "react";
-import moment from "moment";
-import { classNames } from "@/utils/classes";
+import { currentTime } from "@/common/mock/time";
+import { localUserEmail } from "@/common/mock/user";
+import { StarButton } from "@/components/shared";
+import { useNavigation } from "@/hooks";
+import { User } from "@/interfaces";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
-  selectMessageById,
-  selectMessagesByThreadId,
   messageViewingStarted,
   selectIsThreadStarred,
+  selectMessageById,
+  selectMessagesByThreadId,
 } from "@/store/messagesSlice";
-import { useNavigation } from "@/hooks";
-import { StarButton } from "@/components/shared";
-import { localUserEmail } from "@/common/mock/user";
-import { currentTime } from "@/common/mock/time";
-import { User } from "@/interfaces";
+import { classNames } from "@/utils/classes";
+import moment from "moment";
+import React, { memo, useCallback, useMemo } from "react";
 
 interface PropTypes {
   id: string;

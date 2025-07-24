@@ -1,8 +1,8 @@
+import { Header, NavigationMenu } from "@/components";
+import { NavigationProvider } from "@/providers";
+import ReduxProvider from "@/store/Provider";
 import type { Metadata } from "next";
 import "./globals.css";
-import { NavigationProvider } from "@/providers";
-import { Header, NavigationMenu } from "@/components";
-import ReduxProvider from "@/store/Provider";
 
 export const metadata: Metadata = {
   title: "Create Next App",

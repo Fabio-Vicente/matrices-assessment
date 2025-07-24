@@ -1,8 +1,7 @@
-import React from "react";
-import Placeholder from "./Placeholder";
 import { navPages } from "@/common/params";
-import NavItem from "./NavItem";
 import { NavKey } from "@/common/types";
+import NavItem from "./NavItem";
+import Placeholder from "./Placeholder";
 
 export default function Nav() {
   return (

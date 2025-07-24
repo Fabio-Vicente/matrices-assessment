@@ -1,6 +1,3 @@
-import React, { memo, useCallback } from "react";
-import Image from "next/image";
-import { classNames } from "@/utils/classes";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
   messagesStarToggled,
@@ -8,6 +5,9 @@ import {
   selectMessagesByThreadId,
   threadStarToggled,
 } from "@/store/messagesSlice";
+import { classNames } from "@/utils/classes";
+import Image from "next/image";
+import React, { memo, useCallback } from "react";
 
 type PropTypes = React.HTMLAttributes<HTMLButtonElement> &
   (
