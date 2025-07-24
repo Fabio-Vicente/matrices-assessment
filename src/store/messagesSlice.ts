@@ -38,6 +38,7 @@ const messagesSlice = createSlice({
         id: messageId,
         changes: {
           folder: newFolder,
+          ...(newFolder === "trash" && { isStarred: false }),
         },
       });
     },
