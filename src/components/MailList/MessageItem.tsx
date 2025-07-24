@@ -99,7 +99,7 @@ export default memo(function Message({ id }: PropTypes) {
     <div
       role="button"
       className={classNames(
-        "flex h-10 items-center gap-3 border-b border-Theme-Gray-200 px-4 text-sm hover:shadow-md",
+        "flex h-10 items-center gap-3 border-b border-Theme-Gray-200 px-4 text-sm hover:shadow-md hover:relative",
         {
           "bg-Theme-Gray-50": message.isRead,
         },
