@@ -7,14 +7,16 @@ export const messages: Message[] = [
     sender: {
       name: "BMail Team",
       email: "noreply@bmail.com",
+      color: "#efb100",
     },
     recipients: [
       {
         name: "John Qian",
         email: "john@gmail.com",
+        color: "#ad46ff",
       },
     ],
-    date: new Date(new Date().setHours(9, 15)).toISOString(),
+    date: "2025-03-14T09:15:00",
     isRead: true,
     isStarred: true,
     folder: "inbox",
@@ -26,15 +28,18 @@ export const messages: Message[] = [
     sender: {
       name: "Lisa Wang",
       email: "lisa.wang@company.com",
+      color: "#615fff",
     },
     recipients: [
       {
         name: "John Qian",
         email: "john@gmail.com",
+        color: "#ad46ff",
       },
       {
         name: "David Kim",
         email: "david.kim@company.com",
+        color: "#f6339a",
       },
     ],
     date: "2025-03-13T14:30:00",
@@ -50,15 +55,18 @@ export const messages: Message[] = [
     sender: {
       name: "David Kim",
       email: "david.kim@company.com",
+      color: "#f6339a",
     },
     recipients: [
       {
-        name: "John Qian",
-        email: "john@gmail.com",
-      },
-      {
         name: "Lisa Wang",
         email: "lisa.wang@company.com",
+        color: "#615fff",
+      },
+      {
+        name: "John Qian",
+        email: "john@gmail.com",
+        color: "ad46ff",
       },
     ],
     date: "2025-03-13T16:20:00",
@@ -75,11 +83,13 @@ export const messages: Message[] = [
     sender: {
       name: "Local Library",
       email: "newsletter@library.org",
+      color: "#615fff",
     },
     recipients: [
       {
         name: "John Qian",
         email: "john@gmail.com",
+        color: "#ad46ff",
       },
     ],
     date: "2025-03-13T09:00:00",
@@ -94,11 +104,13 @@ export const messages: Message[] = [
     sender: {
       name: "StreamingService",
       email: "billing@streamingservice.com",
+      color: "#615fff",
     },
     recipients: [
       {
         name: "John Qian",
         email: "john@gmail.com",
+        color: "#ad46ff",
       },
     ],
     date: "2025-03-12T19:00:00",
@@ -113,11 +125,13 @@ export const messages: Message[] = [
     sender: {
       name: "Outdoor Club",
       email: "info@outdoorclub.org",
+      color: "#2b7fff",
     },
     recipients: [
       {
         name: "John Qian",
         email: "john@gmail.com",
+        color: "#ad46ff",
       },
     ],
     date: "2025-03-12T19:00:00",
@@ -132,11 +146,13 @@ export const messages: Message[] = [
     sender: {
       name: "Emma Thompson",
       email: "emma.t@gmail.com",
+      color: "#615fff",
     },
     recipients: [
       {
         name: "John Qian",
         email: "john@gmail.com",
+        color: "#ad46ff",
       },
     ],
     date: "2025-03-12T11:45:00",
@@ -152,14 +168,16 @@ export const messages: Message[] = [
     sender: {
       name: "John Qian",
       email: "john@gmail.com",
+      color: "#ad46ff",
     },
     recipients: [
       {
         name: "Emma Thompson",
         email: "emma.t@gmail.com",
+        color: "#615fff",
       },
     ],
-    date: "2025-03-12T11:45:00",
+    date: "2025-03-12T14:20:00",
     isRead: true,
     isStarred: false,
     folder: "inbox",
@@ -173,11 +191,13 @@ export const messages: Message[] = [
     sender: {
       name: "IT Department",
       email: "it@company.com",
+      color: "#efb100",
     },
     recipients: [
       {
         name: "John Qian",
         email: "john@gmail.com",
+        color: "#ad46ff",
       },
     ],
     date: "2025-03-12T10:00:00",
@@ -192,11 +212,13 @@ export const messages: Message[] = [
     sender: {
       name: "Deals4U",
       email: "no-reply@deals4u.biz",
+      color: "#f6339a",
     },
     recipients: [
       {
         name: "John Qian",
         email: "john@gmail.com",
+        color: "#ad46ff",
       },
     ],
     date: "2025-03-12T10:15:00",
@@ -211,11 +233,13 @@ export const messages: Message[] = [
     sender: {
       name: "John Qian",
       email: "john@gmail.com",
+      color: "#ad46ff",
     },
     recipients: [
       {
         name: "Sam Parker",
         email: "sam.parker@gmail.com",
+        color: "#000",
       },
     ],
     date: "2025-03-12T15:14:00",

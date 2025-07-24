@@ -7,12 +7,21 @@ import {
 import { RootState } from ".";
 import { messages } from "@/common/mock/messages";
 
+interface MessagesState {
+  viewingMessageId: string | null;
+}
+
 const messagesAdapter = createEntityAdapter<Message>({
   sortComparer: (a, b) =>
     new Date(b.date).getTime() - new Date(a.date).getTime(),
 });
 
-const initialState = messagesAdapter.getInitialState({}, messages);
+const initialState = messagesAdapter.getInitialState<MessagesState>(
+  {
+    viewingMessageId: null,
+  },
+  messages
+);
 
 const messagesSlice = createSlice({
   name: "messages",
@@ -50,6 +59,15 @@ const messagesSlice = createSlice({
         message.isStarred = !message.isStarred;
       }
     },
+    messageViewingStarted: (
+      state,
+      { payload: messageId }: PayloadAction<string>
+    ) => {
+      state.viewingMessageId = messageId;
+    },
+    messageViewingEnded: (state) => {
+      state.viewingMessageId = null;
+    },
   },
 });
 
@@ -58,6 +76,8 @@ export const {
   messagesFolderMoved,
   messagesReadToggled,
   messagesStarredToggled,
+  messageViewingStarted,
+  messageViewingEnded,
 } = messagesSlice.actions;
 
 export const {
@@ -71,7 +91,7 @@ export const selectMessagesByThreadId = (
   threadId: Message["threadId"]
 ) => {
   if (!threadId) {
-    return [];
+    return null;
   }
   return selectAllMessages(state.messages).filter(
     (message) => message.threadId === threadId
@@ -93,6 +113,10 @@ export const selectCounterByStarred = (state: RootState) => {
   return selectAllMessages(state.messages).filter(
     (message) => message.isStarred
   ).length;
+};
+
+export const selectViewingMessageId = (state: RootState) => {
+  return state.messages.viewingMessageId;
 };
 
 export default messagesSlice.reducer;

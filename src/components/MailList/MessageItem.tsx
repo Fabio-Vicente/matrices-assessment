@@ -1,21 +1,22 @@
 import React, { memo, useCallback, useMemo } from "react";
+import moment from "moment";
+import clsx from "clsx";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
   selectMessageById,
-  messagesStarredToggled,
   selectMessagesByThreadId,
+  messageViewingStarted,
 } from "@/store/messagesSlice";
 import { useNavigation } from "@/hooks";
-import Image from "next/image";
-import moment from "moment";
+import { StarButton } from "@/components/shared";
 import { localUserEmail } from "@/common/mock/user";
-import clsx from "clsx";
+import { currentTime } from "@/common/mock/time";
 
 interface PropTypes {
   id: string;
 }
 
-export default (function Message({ id }: PropTypes) {
+export default memo(function Message({ id }: PropTypes) {
   const dispatch = useAppDispatch();
   const message = useAppSelector((state) =>
     selectMessageById(state.messages, id)
@@ -26,7 +27,7 @@ export default (function Message({ id }: PropTypes) {
   const { currentPage } = useNavigation();
 
   const sender = useMemo(() => {
-    return threadMessages.length
+    return threadMessages?.length
       ? threadMessages
           .filter((message) => message.sender.email !== localUserEmail)
           .map((message) => message.sender.name)
@@ -40,9 +41,15 @@ export default (function Message({ id }: PropTypes) {
       : message.sender.name;
   }, [threadMessages, message.sender.name]);
 
-  const handleToggleStarred = useCallback(() => {
-    dispatch(messagesStarredToggled(message.id));
-  }, [dispatch, message.id]);
+  const handleClick = useCallback(
+    (event: React.MouseEvent<HTMLElement>) => {
+      if ((event.target as HTMLElement).dataset.clickTrapped === "Y") {
+        return;
+      }
+      dispatch(messageViewingStarted(message.id));
+    },
+    [dispatch, message.id]
+  );
 
   if (!message) return null;
 
@@ -79,24 +86,9 @@ export default (function Message({ id }: PropTypes) {
           "bg-gray-50": message.isRead,
         }
       )}
+      onClick={handleClick}
     >
-      <button className="p-1 hover:bg-gray-100" onClick={handleToggleStarred}>
-        {message.isStarred ? (
-          <Image
-            src="/icons/icon-star-filled-yellow.webp"
-            alt="unfavorite"
-            width={20}
-            height={20}
-          />
-        ) : (
-          <Image
-            src="/icons/icon-star.webp"
-            alt="favorite"
-            width={20}
-            height={20}
-          />
-        )}
-      </button>
+      <StarButton messageId={message.id} />
       <div className={clsx("max-w-[200px] truncate flex-1")}>
         <span className={clsx({ "font-bold": !message.isRead })}>
           {Array.isArray(sender) ? `${sender.join(", ")}` : sender}
@@ -114,8 +106,12 @@ export default (function Message({ id }: PropTypes) {
         </span>
       </div>
       <span className="text-xs text-gray-500">
-        {moment(message.date).calendar(null, {
+        {moment(message.date).calendar(currentTime, {
           sameDay: "h:mm A",
+          lastDay: "MMM D",
+          lastWeek: "MMM D",
+          nextDay: "MMM D",
+          nextWeek: "MMM D",
           sameElse: "MMM D",
         })}
       </span>

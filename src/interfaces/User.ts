@@ -1,4 +1,5 @@
-export interface User {
+export default interface User {
   name: string;
   email: string;
+  color: string;
 }

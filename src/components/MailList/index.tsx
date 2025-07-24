@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { memo } from "react";
 import {
   selectCounterByFolder,
   selectCounterByStarred,
@@ -11,7 +11,7 @@ import { useNavigation } from "@/hooks";
 import MessageItem from "./MessageItem";
 import EmptyState from "./EmptyState";
 
-export default function Mail() {
+export default memo(function MailList() {
   const messagesIds = useAppSelector((state) =>
     selectMessageIds(state.messages)
   );
@@ -43,4 +43,4 @@ export default function Mail() {
       ))}
     </>
   );
-}
+});
