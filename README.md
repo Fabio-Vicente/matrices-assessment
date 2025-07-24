@@ -1,6 +1,19 @@
 # Matrices Assessment
 
-This project was developed as part of a job position assessment, with a strong focus on code quality, performance, and architectural best practices. The implementation closely follows the provided model, including all its unique nuances and behaviors, even in cases where alternative approaches could have been used.
+This project was developed as part of a job position assessment, with a strong focus on code quality, performance, accessibility, and architectural best practices. The implementation closely follows the provided model, including all its unique nuances and behaviors, even in cases where alternative approaches could have been used.
+
+## Modern SPA Architecture with Next.js
+
+- **Single Page Application:** The app is built as a true SPA, leveraging Next.js for its robust structure, developer experience, and scalability. While Next.js is often used for SSR and SSG, it also excels as a foundation for modern, client-driven applications like this one.
+
+## Semantic HTML & Accessibility
+
+- **Semantic Structure:** The codebase uses semantic HTML elements (`<header>`, `<nav>`, `<main>`, `<section>`, `<ul>`, `<li>`, `<article>`, etc.) to improve accessibility and maintainability.
+- **ARIA & Keyboard Support:** ARIA attributes, roles, and keyboard navigation are thoughtfully applied to ensure the app is usable for all users, including those using assistive technologies.
+
+## Responsive Design
+
+- **Responsiveness:** Care was taken to try to accomadate the application component on different screens sizes. Even not beeing fully responsive, it can have good response for large desktops, tablets and even some kind of mobile devices.
 
 ## Key Technical Highlights
 
