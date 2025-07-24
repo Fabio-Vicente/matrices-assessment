@@ -23,8 +23,16 @@ export default function RootLayout({
           <div className="flex min-h-0 flex-1">
             <ReduxProvider>
               <NavigationProvider>
-                <NavigationMenu />
-                <div className="min-w-0 flex-1 pr-14 pb-4">{children}</div>
+                <aside className="max-w-[256px] flex-1">
+                  <NavigationMenu />
+                </aside>
+                <main
+                  className="min-w-0 flex-1 pr-14 pb-4"
+                  tabIndex={-1}
+                  id="main-content"
+                >
+                  {children}
+                </main>
               </NavigationProvider>
             </ReduxProvider>
           </div>

@@ -98,9 +98,11 @@ export default function ThreadItem({
               </div>
             </div>
             {!isOpened && (
-              <p className="text-[13px] whitespace-pre-wrap text-Theme-Gray-600">
-                {message.content}
-              </p>
+              <article>
+                <p className="text-[13px] whitespace-pre-wrap text-Theme-Gray-600">
+                  {message.content}
+                </p>
+              </article>
             )}
           </div>
         </header>

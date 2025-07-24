@@ -131,7 +131,7 @@ export default memo(function Message({ id }: PropTypes) {
           ​ -​ {message.content}
         </span>
       </div>
-      <span className="text-xs text-Theme-Gray-500">
+      <time className="text-xs text-Theme-Gray-500" aria-label="Message date">
         {moment(message.date).calendar(currentTime, {
           sameDay: "h:mm A",
           lastDay: "MMM D",
@@ -140,7 +140,7 @@ export default memo(function Message({ id }: PropTypes) {
           nextWeek: "MMM D",
           sameElse: "MMM D",
         })}
-      </span>
+      </time>
     </div>
   );
 });

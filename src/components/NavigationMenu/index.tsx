@@ -3,15 +3,17 @@ import { NavKey } from "@/common/types";
 import NavItem from "./NavItem";
 import Placeholder from "./Placeholder";
 
-export default function Nav() {
+export default function NavigationMenu() {
   return (
-    <div className="flex max-w-[256px] flex-1 flex-col gap-4 px-3">
+    <nav aria-label="Main navigation" className="flex flex-col gap-4 px-3">
       <Placeholder />
-      <div>
+      <ul role="list">
         {Object.keys(navPages).map((page) => (
-          <NavItem key={page} page={page as NavKey} />
+          <li key={page} role="listitem">
+            <NavItem page={page as NavKey} />
+          </li>
         ))}
-      </div>
-    </div>
+      </ul>
+    </nav>
   );
 }

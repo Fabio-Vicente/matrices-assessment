@@ -40,6 +40,8 @@ export default function NavItem({ page }: PropTypes) {
           "hover:bg-Theme-Hover": currentPage !== page,
         },
       )}
+      aria-current={currentPage === page ? "page" : undefined}
+      aria-label={navPages[page].label}
     >
       <Image src={navPages[page].iconPath} alt={page} width={20} height={20} />
       <span

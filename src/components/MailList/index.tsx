@@ -37,10 +37,14 @@ export default memo(function MailList() {
   }
 
   return (
-    <>
-      {messagesIds.map((id) => (
-        <MessageItem key={id} id={id} />
-      ))}
-    </>
+    <section aria-label="Message list">
+      <ul role="list">
+        {messagesIds.map((id) => (
+          <li key={id} role="listitem">
+            <MessageItem id={id} />
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 });
