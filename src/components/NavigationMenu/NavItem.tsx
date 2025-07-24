@@ -19,7 +19,9 @@ interface PropTypes {
 export default function NavItem({ page }: PropTypes) {
   const dispatch = useAppDispatch();
   const messagesCounter = useAppSelector((state) =>
-    page === "inbox" || page === "spam" ? selectCounterByFolder(state, page) : 0
+    page === "inbox" || page === "spam"
+      ? selectCounterByFolder(state.messages, page)
+      : 0
   );
   const { currentPage, navigateTo } = useNavigation();
 

@@ -4,19 +4,22 @@ import {
   createSlice,
   PayloadAction,
 } from "@reduxjs/toolkit";
-import { RootState } from ".";
 import { messages } from "@/common/mock/messages";
 
-interface MessagesState {
+interface AdditionalState {
   viewingMessageId: string | null;
 }
+
+type MessagesState = ReturnType<
+  typeof messagesAdapter.getInitialState<AdditionalState>
+>;
 
 const messagesAdapter = createEntityAdapter<Message>({
   sortComparer: (a, b) =>
     new Date(b.date).getTime() - new Date(a.date).getTime(),
 });
 
-const initialState = messagesAdapter.getInitialState<MessagesState>(
+const initialState = messagesAdapter.getInitialState<AdditionalState>(
   {
     viewingMessageId: null,
   },
@@ -51,13 +54,30 @@ const messagesSlice = createSlice({
         message.isRead = !message.isRead;
       }
     },
-    messagesStarredToggled: (
+    messagesStarToggled: (
       state,
       { payload: messageId }: PayloadAction<string>
     ) => {
       const message = state.entities[messageId];
       if (message) {
         message.isStarred = !message.isStarred;
+      }
+    },
+    threadStarToggled: (
+      state,
+      { payload: threadId }: PayloadAction<string>
+    ) => {
+      const threadMessages = Object.values(state.entities).filter(
+        (message) => message.threadId === threadId
+      );
+      const isStarred = threadMessages.some((message) => message.isStarred);
+
+      if (isStarred) {
+        threadMessages.forEach((message) => {
+          message.isStarred = false;
+        });
+      } else {
+        threadMessages[0].isStarred = true;
       }
     },
     messageViewingStarted: (
@@ -76,7 +96,8 @@ export const {
   messagesSet,
   messagesFolderMoved,
   messagesReadToggled,
-  messagesStarredToggled,
+  messagesStarToggled,
+  threadStarToggled,
   messageViewingStarted,
   messageViewingEnded,
 } = messagesSlice.actions;
@@ -88,36 +109,43 @@ export const {
 } = messagesAdapter.getSelectors();
 
 export const selectMessagesByThreadId = (
-  state: RootState,
+  state: MessagesState,
   threadId: Message["threadId"]
 ) => {
   if (!threadId) {
     return null;
   }
-  return selectAllMessages(state.messages).filter(
+  return selectAllMessages(state).filter(
     (message) => message.threadId === threadId
   );
 };
 
 export const selectCounterByFolder = (
-  state: RootState,
+  state: MessagesState,
   folder: Message["folder"]
 ) => {
-  return selectAllMessages(state.messages).filter(
+  return selectAllMessages(state).filter(
     (message) =>
       message.folder === folder &&
       (!message.threadId || message.isLastMessageInThread)
   ).length;
 };
 
-export const selectCounterByStarred = (state: RootState) => {
-  return selectAllMessages(state.messages).filter(
+export const selectIsThreadStarred = (
+  state: MessagesState,
+  threadId: Message["threadId"]
+) => {
+  return selectMessagesByThreadId(state, threadId)?.some(
     (message) => message.isStarred
-  ).length;
+  );
 };
 
-export const selectViewingMessageId = (state: RootState) => {
-  return state.messages.viewingMessageId;
+export const selectCounterByStarred = (state: MessagesState) => {
+  return selectAllMessages(state).filter((message) => message.isStarred).length;
+};
+
+export const selectViewingMessageId = (state: MessagesState) => {
+  return state.viewingMessageId;
 };
 
 export default messagesSlice.reducer;

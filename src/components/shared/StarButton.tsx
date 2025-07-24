@@ -3,37 +3,54 @@ import Image from "next/image";
 import { classNames } from "@/utils/classes";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
-  messagesStarredToggled,
+  messagesStarToggled,
   selectMessageById,
+  selectMessagesByThreadId,
+  threadStarToggled,
 } from "@/store/messagesSlice";
 
-interface PropTypes extends React.HTMLAttributes<HTMLButtonElement> {
-  messageId: string;
-}
+type PropTypes = React.HTMLAttributes<HTMLButtonElement> &
+  (
+    | {
+        messageId: string;
+      }
+    | {
+        threadId: string;
+      }
+  );
 
-export default memo(function StarButton({
-  messageId,
-  className,
-  ...props
-}: PropTypes) {
+export default memo(function StarButton({ className, ...props }: PropTypes) {
+  const { messageId, threadId, ...restProps } = {
+    messageId: undefined,
+    threadId: undefined,
+    ...props,
+  };
   const dispatch = useAppDispatch();
-  const isStarred = useAppSelector(
-    (state) => selectMessageById(state.messages, messageId).isStarred
+  const isStarred = useAppSelector((state) =>
+    messageId
+      ? selectMessageById(state.messages, messageId).isStarred
+      : selectMessagesByThreadId(state.messages, threadId)?.some(
+          (message) => message.isStarred
+        )
   );
 
   const handleToggleStarred = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
       (event.target as HTMLElement).dataset.clickTrapped = "Y";
-      dispatch(messagesStarredToggled(messageId));
+      if (messageId) {
+        dispatch(messagesStarToggled(messageId));
+      } else {
+        dispatch(threadStarToggled(threadId!));
+      }
     },
-    [dispatch, messageId]
+    [isStarred, dispatch, messageId, threadId]
   );
 
   return (
     <button
       className={classNames("p-1 hover:bg-gray-100", className)}
       onClick={handleToggleStarred}
-      {...props}
+      {...restProps}
     >
       {isStarred ? (
         <Image

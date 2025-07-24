@@ -6,7 +6,9 @@ import { Mail, MailList } from "@/components";
 import { classNames } from "@/utils/classes";
 
 export default function Home() {
-  const messageViewingId = useAppSelector(selectViewingMessageId);
+  const messageViewingId = useAppSelector((state) =>
+    selectViewingMessageId(state.messages)
+  );
 
   return (
     <div

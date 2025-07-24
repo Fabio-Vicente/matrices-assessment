@@ -6,6 +6,7 @@ import {
   selectMessageById,
   selectMessagesByThreadId,
   messageViewingStarted,
+  selectIsThreadStarred,
 } from "@/store/messagesSlice";
 import { useNavigation } from "@/hooks";
 import { StarButton } from "@/components/shared";
@@ -23,7 +24,10 @@ export default memo(function Message({ id }: PropTypes) {
     selectMessageById(state.messages, id)
   );
   const threadMessages = useAppSelector((state) =>
-    selectMessagesByThreadId(state, message.threadId)
+    selectMessagesByThreadId(state.messages, message.threadId)
+  );
+  const isThreadStarred = useAppSelector((state) =>
+    selectIsThreadStarred(state.messages, message.threadId)
   );
   const { currentPage } = useNavigation();
 
@@ -81,7 +85,8 @@ export default memo(function Message({ id }: PropTypes) {
 
   if (
     currentPage === "starred" &&
-    (!message.isStarred || message.folder !== "inbox")
+    (!message.isStarred || message.folder !== "inbox") &&
+    !isThreadStarred
   ) {
     return null;
   }
@@ -101,7 +106,13 @@ export default memo(function Message({ id }: PropTypes) {
       )}
       onClick={handleClick}
     >
-      {message.folder !== "trash" && <StarButton messageId={message.id} />}
+      {message.folder !== "trash" && (
+        <StarButton
+          {...(message.threadId
+            ? { threadId: message.threadId }
+            : { messageId: message.id })}
+        />
+      )}
       <div className={classNames("max-w-[200px] truncate flex-1")}>
         <span className={classNames({ "font-bold": !message.isRead })}>
           {`${threadUsers.join(", ")}`}

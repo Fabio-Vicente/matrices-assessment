@@ -16,7 +16,7 @@ export default function Mail({ viewingMailId }: PropTypes) {
     selectMessageById(state.messages, viewingMailId)
   );
   const threads = useAppSelector((state) =>
-    selectMessagesByThreadId(state, viewingMail.threadId)
+    selectMessagesByThreadId(state.messages, viewingMail.threadId)
   );
 
   return (

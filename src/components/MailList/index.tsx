@@ -22,11 +22,11 @@ export default memo(function MailList() {
       currentPage === "spam" ||
       currentPage === "trash"
     ) {
-      return selectCounterByFolder(state, currentPage);
+      return selectCounterByFolder(state.messages, currentPage);
     }
 
     if (currentPage === "starred") {
-      return selectCounterByStarred(state);
+      return selectCounterByStarred(state.messages);
     }
 
     return messagesIds.length;
