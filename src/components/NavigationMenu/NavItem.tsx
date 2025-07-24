@@ -1,27 +1,36 @@
 "use client";
 
-import React from "react";
+import React, { useCallback } from "react";
 import Image from "next/image";
 import { useNavigation } from "@/providers/NavigationProvider";
 import { NavKey } from "@/common/types";
 import { navPages } from "@/common/params";
 import clsx from "clsx";
-import { useAppSelector } from "@/store/hooks";
-import { selectCounterByFolder } from "@/store/messagesSlice";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import {
+  messageViewingEnded,
+  selectCounterByFolder,
+} from "@/store/messagesSlice";
 
 interface PropTypes {
   page: NavKey;
 }
 
 export default function NavItem({ page }: PropTypes) {
-  const { currentPage, navigateTo } = useNavigation();
+  const dispatch = useAppDispatch();
   const messagesCounter = useAppSelector((state) =>
     page === "inbox" || page === "spam" ? selectCounterByFolder(state, page) : 0
   );
+  const { currentPage, navigateTo } = useNavigation();
+
+  const handleNavigation = useCallback(() => {
+    dispatch(messageViewingEnded());
+    navigateTo(page);
+  }, [navigateTo, dispatch, page]);
 
   return (
     <button
-      onClick={() => navigateTo(page)}
+      onClick={handleNavigation}
       className={clsx(
         "py-1.5 pr-3 pl-4 rounded-full flex gap-4 w-full items-center",
         {
