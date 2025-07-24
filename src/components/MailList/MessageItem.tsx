@@ -15,7 +15,7 @@ interface PropTypes {
   id: string;
 }
 
-export default memo(function Message({ id }: PropTypes) {
+export default (function Message({ id }: PropTypes) {
   const dispatch = useAppDispatch();
   const message = useAppSelector((state) =>
     selectMessageById(state.messages, id)

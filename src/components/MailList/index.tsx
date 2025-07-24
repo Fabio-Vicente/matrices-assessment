@@ -1,14 +1,41 @@
 "use client";
 
-import { useAppSelector } from "@/store/hooks";
-import { selectMessageIds } from "@/store/messagesSlice";
 import React from "react";
+import {
+  selectCounterByFolder,
+  selectCounterByStarred,
+  selectMessageIds,
+} from "@/store/messagesSlice";
+import { useAppSelector } from "@/store/hooks";
+import { useNavigation } from "@/hooks";
 import MessageItem from "./MessageItem";
+import EmptyState from "./EmptyState";
 
 export default function Mail() {
   const messagesIds = useAppSelector((state) =>
     selectMessageIds(state.messages)
   );
+  const { currentPage } = useNavigation();
+  const messagesCounter = useAppSelector((state) => {
+    if (
+      currentPage === "inbox" ||
+      currentPage === "spam" ||
+      currentPage === "trash"
+    ) {
+      return selectCounterByFolder(state, currentPage);
+    }
+
+    if (currentPage === "starred") {
+      return selectCounterByStarred(state);
+    }
+
+    return messagesIds.length;
+  });
+
+  if (messagesCounter === 0) {
+    return <EmptyState />;
+  }
+
   return (
     <>
       {messagesIds.map((id) => (

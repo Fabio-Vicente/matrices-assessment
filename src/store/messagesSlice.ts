@@ -66,15 +66,6 @@ export const {
   selectIds: selectMessageIds,
 } = messagesAdapter.getSelectors();
 
-export const selectMessagesByFolder = (
-  state: RootState,
-  folder: Message["folder"]
-) => {
-  return selectAllMessages(state.messages).filter(
-    (message) => message.folder === folder
-  );
-};
-
 export const selectMessagesByThreadId = (
   state: RootState,
   threadId: Message["threadId"]
@@ -87,12 +78,6 @@ export const selectMessagesByThreadId = (
   );
 };
 
-export const selectStarredMessages = (state: RootState) => {
-  return selectAllMessages(state.messages).filter(
-    (message) => message.isStarred
-  );
-};
-
 export const selectCounterByFolder = (
   state: RootState,
   folder: Message["folder"]
@@ -101,6 +86,12 @@ export const selectCounterByFolder = (
     (message) =>
       message.folder === folder &&
       (!message.threadId || message.isLastMessageInThread)
+  ).length;
+};
+
+export const selectCounterByStarred = (state: RootState) => {
+  return selectAllMessages(state.messages).filter(
+    (message) => message.isStarred
   ).length;
 };
 
