@@ -1,3 +1,4 @@
+import { useNavigation } from "@/hooks";
 import { useAppSelector } from "@/store/hooks";
 import {
   selectMessageById,
@@ -17,12 +18,15 @@ export default function Mail({ viewingMailId }: PropTypes) {
   const threads = useAppSelector((state) =>
     selectMessagesByThreadId(state.messages, viewingMail.threadId),
   );
+  const { currentPage } = useNavigation();
 
   return (
     <div className="pt-2">
       <Header />
       <div className="pt-6">
-        <h2 className="ml-[52px] px-4 text-[22px]">{viewingMail.subject}</h2>
+        {(currentPage !== "starred" || viewingMail.isStarred) && (
+          <h2 className="ml-[52px] px-4 text-[22px]">{viewingMail.subject}</h2>
+        )}
         {threads
           ?.reverse()
           .map((thread, index, { length }) => (
