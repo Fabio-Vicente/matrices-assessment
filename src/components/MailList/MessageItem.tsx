@@ -106,9 +106,9 @@ export default memo(function Message({ id }: PropTypes) {
         <span className={classNames({ "font-bold": !message.isRead })}>
           {`${threadUsers.join(", ")}`}
         </span>
-        <span className="text-xs text-gray-500">
+        <span className="text-xs text-gray-500 ml-1">
           {threadMessages && threadUsers.length > 1
-            ? ` (${threadUsers.length})`
+            ? `(${threadUsers.length})`
             : ""}
         </span>
       </div>
