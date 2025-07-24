@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useNavigation } from "@/providers/NavigationProvider";
 import { NavKey } from "@/common/types";
 import { navPages } from "@/common/params";
-import clsx from "clsx";
+import { classNames } from "@/utils/classes";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
   messageViewingEnded,
@@ -31,7 +31,7 @@ export default function NavItem({ page }: PropTypes) {
   return (
     <button
       onClick={handleNavigation}
-      className={clsx(
+      className={classNames(
         "py-1.5 pr-3 pl-4 rounded-full flex gap-4 w-full items-center",
         {
           "bg-[#d3e3fd]": currentPage === page,
@@ -41,7 +41,7 @@ export default function NavItem({ page }: PropTypes) {
     >
       <Image src={navPages[page].iconPath} alt={page} width={20} height={20} />
       <span
-        className={clsx("text-sm flex-1 text-left", {
+        className={classNames("text-sm flex-1 text-left", {
           "font-semibold": currentPage === page,
         })}
       >

@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from "react";
-import clsx from "clsx";
+import { classNames } from "@/utils/classes";
 
 interface PropTypes extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
@@ -10,7 +10,10 @@ export default function HeaderBaseButton({
 }: PropsWithChildren<PropTypes>) {
   return (
     <button
-      className={clsx("p-2 hover:bg-gray-100 rounded-full", className)}
+      className={classNames(
+        "p-2 hover:bg-gray-100 rounded-full text-sm",
+        className
+      )}
       {...props}
     >
       {children}

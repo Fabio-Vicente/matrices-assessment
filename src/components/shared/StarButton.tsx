@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from "react";
 import Image from "next/image";
-import clsx from "clsx";
+import { classNames } from "@/utils/classes";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
   messagesStarredToggled,
@@ -31,7 +31,7 @@ export default memo(function StarButton({
 
   return (
     <button
-      className={clsx("p-1 hover:bg-gray-100", className)}
+      className={classNames("p-1 hover:bg-gray-100", className)}
       onClick={handleToggleStarred}
       {...props}
     >

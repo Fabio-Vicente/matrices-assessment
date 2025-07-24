@@ -6,7 +6,7 @@ import Avatar from "./Avatar";
 import { localUserEmail } from "@/common/mock/user";
 import { currentTime } from "@/common/mock/time";
 import { Message } from "@/interfaces";
-import clsx from "clsx";
+import { classNames } from "@/utils/classes";
 
 interface PropTypes {
   message: Message;
@@ -41,7 +41,7 @@ export default function ThreadItem({
 
   return (
     <div
-      className={clsx("py-5 flex gap-1 flex-col px-4", {
+      className={classNames("py-5 flex gap-1 flex-col px-4", {
         "border-b border-[#e5e5e5]": divider,
       })}
     >

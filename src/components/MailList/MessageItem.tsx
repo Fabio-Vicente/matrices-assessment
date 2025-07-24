@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useMemo } from "react";
 import moment from "moment";
-import clsx from "clsx";
+import { classNames } from "@/utils/classes";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
   selectMessageById,
@@ -80,7 +80,7 @@ export default memo(function Message({ id }: PropTypes) {
   return (
     <div
       role="button"
-      className={clsx(
+      className={classNames(
         "px-4 border-gray-200 h-10 flex gap-3 items-center text-sm border-b hover:shadow-md",
         {
           "bg-gray-50": message.isRead,
@@ -89,8 +89,8 @@ export default memo(function Message({ id }: PropTypes) {
       onClick={handleClick}
     >
       <StarButton messageId={message.id} />
-      <div className={clsx("max-w-[200px] truncate flex-1")}>
-        <span className={clsx({ "font-bold": !message.isRead })}>
+      <div className={classNames("max-w-[200px] truncate flex-1")}>
+        <span className={classNames({ "font-bold": !message.isRead })}>
           {Array.isArray(sender) ? `${sender.join(", ")}` : sender}
         </span>
         <span className="text-xs text-gray-500">
@@ -98,7 +98,7 @@ export default memo(function Message({ id }: PropTypes) {
         </span>
       </div>
       <div className="flex truncate flex-1">
-        <span className={clsx({ "font-semibold": !message.isRead })}>
+        <span className={classNames({ "font-semibold": !message.isRead })}>
           {message.subject}
         </span>
         <span className="text-gray-500 truncate flex-1">
