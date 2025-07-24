@@ -5,10 +5,11 @@ export default interface Message {
   subject: string;
   sender: User;
   recipients: User[];
-  date: Date;
+  date: string;
   isRead: boolean;
   isStarred: boolean;
   folder: "inbox" | "spam" | "trash";
   content: string;
   threadId?: string;
+  isLastMessageInThread?: boolean;
 }

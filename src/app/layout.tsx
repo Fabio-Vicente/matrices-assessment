@@ -19,11 +19,11 @@ export default function RootLayout({
       <body className="antialiased pl-17 bg-[#e9eef6] h-screen">
         <div className="bg-[#f8fafd] flex flex-col h-full">
           <Header />
-          <div className="flex flex-1">
+          <div className="flex flex-1 min-h-0">
             <ReduxProvider>
               <NavigationProvider>
                 <NavigationMenu />
-                <div className="flex-1 pr-14 pb-4">{children}</div>
+                <div className="flex-1 pr-14 pb-4 min-w-0">{children}</div>
               </NavigationProvider>
             </ReduxProvider>
           </div>

@@ -8,7 +8,8 @@ import { RootState } from ".";
 import { messages } from "@/common/mock/messages";
 
 const messagesAdapter = createEntityAdapter<Message>({
-  sortComparer: (a, b) => b.date.getTime() - a.date.getTime(),
+  sortComparer: (a, b) =>
+    new Date(b.date).getTime() - new Date(a.date).getTime(),
 });
 
 const initialState = messagesAdapter.getInitialState({}, messages);
@@ -20,23 +21,31 @@ const messagesSlice = createSlice({
     messagesSet: messagesAdapter.setAll,
     messagesFolderMoved: (
       state,
-      action: PayloadAction<{ id: string; newFolder: Message["folder"] }>
+      {
+        payload: { messageId, newFolder },
+      }: PayloadAction<{ messageId: string; newFolder: Message["folder"] }>
     ) => {
       messagesAdapter.updateOne(state, {
-        id: action.payload.id,
+        id: messageId,
         changes: {
-          folder: action.payload.newFolder,
+          folder: newFolder,
         },
       });
     },
-    messagesReadToggled: (state, action: PayloadAction<string>) => {
-      const message = state.entities[action.payload];
+    messagesReadToggled: (
+      state,
+      { payload: messageId }: PayloadAction<string>
+    ) => {
+      const message = state.entities[messageId];
       if (message) {
         message.isRead = !message.isRead;
       }
     },
-    messagesStarredToggled: (state, action: PayloadAction<string>) => {
-      const message = state.entities[action.payload];
+    messagesStarredToggled: (
+      state,
+      { payload: messageId }: PayloadAction<string>
+    ) => {
+      const message = state.entities[messageId];
       if (message) {
         message.isStarred = !message.isStarred;
       }
@@ -66,6 +75,18 @@ export const selectMessagesByFolder = (
   );
 };
 
+export const selectMessagesByThreadId = (
+  state: RootState,
+  threadId: Message["threadId"]
+) => {
+  if (!threadId) {
+    return [];
+  }
+  return selectAllMessages(state.messages).filter(
+    (message) => message.threadId === threadId
+  );
+};
+
 export const selectStarredMessages = (state: RootState) => {
   return selectAllMessages(state.messages).filter(
     (message) => message.isStarred
@@ -77,7 +98,9 @@ export const selectCounterByFolder = (
   folder: Message["folder"]
 ) => {
   return selectAllMessages(state.messages).filter(
-    (message) => message.folder === folder && !message.threadId
+    (message) =>
+      message.folder === folder &&
+      (!message.threadId || message.isLastMessageInThread)
   ).length;
 };
 
