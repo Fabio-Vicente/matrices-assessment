@@ -1,9 +1,9 @@
 import React from "react";
 import HeaderBaseButton from "./HeaderBaseButton";
 
-interface PropTypes extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
-
-export default function DeleteButton({ ...props }: PropTypes) {
+export default function DeleteButton({
+  ...props
+}: React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
     <HeaderBaseButton {...props}>
       <svg

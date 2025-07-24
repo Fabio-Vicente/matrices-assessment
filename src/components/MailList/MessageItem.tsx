@@ -53,7 +53,7 @@ export default memo(function Message({ id }: PropTypes) {
           "you") ||
           [],
       ); // include yourself if you are in the thread
-  }, [threadMessages, message.sender.name]);
+  }, [message, threadMessages]);
 
   const handleClick = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {

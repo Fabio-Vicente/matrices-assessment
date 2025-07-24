@@ -43,7 +43,7 @@ export default memo(function StarButton({ className, ...props }: PropTypes) {
         dispatch(threadStarToggled(threadId!));
       }
     },
-    [isStarred, dispatch, messageId, threadId],
+    [dispatch, messageId, threadId],
   );
 
   return (

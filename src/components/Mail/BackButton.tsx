@@ -1,9 +1,9 @@
 import React from "react";
 import HeaderBaseButton from "./HeaderBaseButton";
 
-interface PropTypes extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
-
-export default function BackButton({ ...props }: PropTypes) {
+export default function BackButton({
+  ...props
+}: React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
     <HeaderBaseButton {...props}>
       <svg
