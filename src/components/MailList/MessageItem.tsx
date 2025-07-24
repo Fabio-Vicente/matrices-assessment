@@ -11,6 +11,7 @@ import { useNavigation } from "@/hooks";
 import { StarButton } from "@/components/shared";
 import { localUserEmail } from "@/common/mock/user";
 import { currentTime } from "@/common/mock/time";
+import { User } from "@/interfaces";
 
 interface PropTypes {
   id: string;
@@ -26,19 +27,28 @@ export default memo(function Message({ id }: PropTypes) {
   );
   const { currentPage } = useNavigation();
 
-  const sender = useMemo(() => {
-    return threadMessages?.length
-      ? threadMessages
-          .filter((message) => message.sender.email !== localUserEmail)
-          .map((message) => message.sender.name)
-          .concat(
-            (threadMessages.some(
-              (message) => message.sender.email === localUserEmail
-            ) &&
-              "you") ||
-              []
-          )
-      : message.sender.name;
+  const threadUsers = useMemo(() => {
+    return (threadMessages ?? [message])
+      .reduce<User[]>(
+        (threadUsers, message) =>
+          message.sender.email === localUserEmail
+            ? [...threadUsers, ...message.recipients]
+            : [...threadUsers, message.sender],
+        []
+      ) // include all users in the thread
+      .filter((user, index, self) =>
+        self
+          .slice(index + 1)
+          .every((slicedUser) => slicedUser.email !== user.email)
+      ) // remove duplicates
+      .map((user) => user.name) // get names
+      .concat(
+        ((threadMessages ?? [message]).some(
+          (message) => message.sender.email === localUserEmail
+        ) &&
+          "you") ||
+          []
+      ); // include yourself if you are in the thread
   }, [threadMessages, message.sender.name]);
 
   const handleClick = useCallback(
@@ -94,10 +104,12 @@ export default memo(function Message({ id }: PropTypes) {
       {message.folder !== "trash" && <StarButton messageId={message.id} />}
       <div className={classNames("max-w-[200px] truncate flex-1")}>
         <span className={classNames({ "font-bold": !message.isRead })}>
-          {Array.isArray(sender) ? `${sender.join(", ")}` : sender}
+          {`${threadUsers.join(", ")}`}
         </span>
         <span className="text-xs text-gray-500">
-          {Array.isArray(sender) ? ` (${sender.length})` : ""}
+          {threadMessages && threadUsers.length > 1
+            ? ` (${threadUsers.length})`
+            : ""}
         </span>
       </div>
       <div className="flex truncate flex-1">
