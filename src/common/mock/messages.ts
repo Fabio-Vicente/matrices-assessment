@@ -169,7 +169,7 @@ export const messages: Message[] = [
   },
   {
     id: "9",
-    subject: "Security update",
+    subject: "Important: Security update",
     sender: {
       name: "IT Department",
       email: "it@company.com",

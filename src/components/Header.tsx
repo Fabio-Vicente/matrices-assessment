@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Header() {
   return (
-    <div className="px-4 py-2">
+    <div className="px-4 py-2 h-16">
       <Image
         src="/bmail-logo.webp"
         alt="Bmail logo"
