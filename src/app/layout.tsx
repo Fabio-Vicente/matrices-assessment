@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "@/components/Header";
-import Nav from "@/components/NavigationMenu";
-import NavigationProvider from "@/providers/NavigationProvider";
+import { NavigationProvider } from "@/providers";
+import { Header, NavigationMenu } from "@/components";
+import ReduxProvider from "@/store/Provider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,14 +16,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased pl-17 bg-[#e9eef6]">
-        <div className="bg-[#f8fafd]">
+      <body className="antialiased pl-17 bg-[#e9eef6] h-screen">
+        <div className="bg-[#f8fafd] flex flex-col h-full">
           <Header />
-          <div>
-            <NavigationProvider>
-              <Nav />
-              {children}
-            </NavigationProvider>
+          <div className="flex flex-1">
+            <ReduxProvider>
+              <NavigationProvider>
+                <NavigationMenu />
+                <div className="flex-1 pr-14 pb-4">{children}</div>
+              </NavigationProvider>
+            </ReduxProvider>
           </div>
         </div>
       </body>

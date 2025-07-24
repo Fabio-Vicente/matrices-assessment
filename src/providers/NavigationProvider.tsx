@@ -1,7 +1,13 @@
 "use client";
 
 import { NavKey } from "@/common/types";
-import { createContext, useCallback, useContext, useState } from "react";
+import {
+  createContext,
+  PropsWithChildren,
+  useCallback,
+  useContext,
+  useState,
+} from "react";
 
 interface NavigationContext {
   currentPage: NavKey;
@@ -17,11 +23,7 @@ export function useNavigation() {
   return useContext(context);
 }
 
-export default function NavigationProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function NavigationProvider({ children }: PropsWithChildren) {
   const [currentPage, setCurrentPage] = useState<NavKey>("inbox");
 
   const navigateTo = useCallback((page: NavKey) => {
