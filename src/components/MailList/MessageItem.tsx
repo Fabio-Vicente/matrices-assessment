@@ -69,7 +69,10 @@ export default memo(function Message({ id }: PropTypes) {
     return null;
   }
 
-  if (currentPage === "starred" && !message.isStarred) {
+  if (
+    currentPage === "starred" &&
+    (!message.isStarred || message.folder !== "inbox")
+  ) {
     return null;
   }
 
