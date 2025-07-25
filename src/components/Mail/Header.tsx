@@ -1,7 +1,7 @@
 import { useNavigation } from "@/hooks";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
-  messagesFolderMoved,
+  messageFolderMoved,
   messageViewingEnded,
   selectViewingMessageId,
 } from "@/store/messagesSlice";
@@ -24,21 +24,21 @@ export default function Header() {
 
   const handleSpam = () => {
     if (messageId) {
-      dispatch(messagesFolderMoved({ messageId, newFolder: "spam" }));
+      dispatch(messageFolderMoved({ messageId, newFolder: "spam" }));
       handleBack();
     }
   };
 
   const handleDelete = () => {
     if (messageId) {
-      dispatch(messagesFolderMoved({ messageId, newFolder: "trash" }));
+      dispatch(messageFolderMoved({ messageId, newFolder: "trash" }));
       handleBack();
     }
   };
 
   const handleRestore = () => {
     if (messageId) {
-      dispatch(messagesFolderMoved({ messageId, newFolder: "inbox" }));
+      dispatch(messageFolderMoved({ messageId, newFolder: "inbox" }));
     }
     handleBack();
   };

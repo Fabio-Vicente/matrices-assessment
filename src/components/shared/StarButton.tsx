@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
-  messagesStarToggled,
+  messageStarToggled,
   selectMessageById,
   selectMessagesByThreadId,
   threadStarToggled,
@@ -38,7 +38,7 @@ export default memo(function StarButton({ className, ...props }: PropTypes) {
     (event: React.MouseEvent<HTMLElement>) => {
       (event.target as HTMLElement).dataset.clickTrapped = "Y";
       if (messageId) {
-        dispatch(messagesStarToggled(messageId));
+        dispatch(messageStarToggled(messageId));
       } else {
         dispatch(threadStarToggled(threadId!));
       }

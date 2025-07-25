@@ -31,7 +31,7 @@ const messagesSlice = createSlice({
   initialState,
   reducers: {
     messagesSet: messagesAdapter.setAll,
-    messagesFolderMoved: (
+    messageFolderMoved: (
       state,
       {
         payload: { messageId, newFolder },
@@ -48,7 +48,7 @@ const messagesSlice = createSlice({
     messageRead: (state, { payload: messageId }: PayloadAction<string>) => {
       state.entities[messageId].isRead = true;
     },
-    messagesStarToggled: (
+    messageStarToggled: (
       state,
       { payload: messageId }: PayloadAction<string>,
     ) => {
@@ -88,9 +88,9 @@ const messagesSlice = createSlice({
 
 export const {
   messagesSet,
-  messagesFolderMoved,
+  messageFolderMoved,
   messageRead,
-  messagesStarToggled,
+  messageStarToggled,
   threadStarToggled,
   messageViewingStarted,
   messageViewingEnded,
