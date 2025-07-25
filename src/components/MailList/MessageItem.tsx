@@ -5,6 +5,7 @@ import { useNavigation } from "@/hooks";
 import { User } from "@/interfaces";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
+  messageRead,
   messageViewingStarted,
   selectIsThreadStarred,
   selectMessageById,
@@ -61,6 +62,7 @@ export default memo(function Message({ id }: PropTypes) {
         return;
       }
       dispatch(messageViewingStarted(message.id));
+      dispatch(messageRead(message.id));
     },
     [dispatch, message.id],
   );

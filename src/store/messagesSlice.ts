@@ -45,14 +45,8 @@ const messagesSlice = createSlice({
         },
       });
     },
-    messagesReadToggled: (
-      state,
-      { payload: messageId }: PayloadAction<string>,
-    ) => {
-      const message = state.entities[messageId];
-      if (message) {
-        message.isRead = !message.isRead;
-      }
+    messageRead: (state, { payload: messageId }: PayloadAction<string>) => {
+      state.entities[messageId].isRead = true;
     },
     messagesStarToggled: (
       state,
@@ -95,7 +89,7 @@ const messagesSlice = createSlice({
 export const {
   messagesSet,
   messagesFolderMoved,
-  messagesReadToggled,
+  messageRead,
   messagesStarToggled,
   threadStarToggled,
   messageViewingStarted,
